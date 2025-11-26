@@ -1,0 +1,15 @@
+.paper {
+  padding: 30px;
+  width: 400px;
+  margin: 50px auto;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.errorMessage {
+  margin-top: 10px;
+}

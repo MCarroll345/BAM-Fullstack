@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Container, Paper, TextField, Button, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import classes from './Login.module.css';
+import { Box, Container, Paper, TextField, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import Button from '../generic/Button';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -43,26 +45,16 @@ export default function Login() {
     }
   };
 
-  const paperStyle = {
-    padding: '30px',
-    width: 400,
-    margin: '50px auto',
-  };
+
 
   return (
     <Container>
       {!customerData ? (
-        <Paper elevation={3} style={paperStyle}>
+        <Paper elevation={3} className={classes.paper}>
           <Typography variant="h5" component="h2" align="center" gutterBottom>
             Login
           </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 2,
-            }}
-          >
+          <Box className={classes.formContainer}>
             <TextField
               label="Username"
               variant="outlined"
@@ -84,13 +76,9 @@ export default function Login() {
               </Typography>
             )}
             <Button
-              variant="contained"
-              color="primary"
-              onClick={handleLogin}
-              fullWidth
-            >
-              Login
-            </Button>
+              text1="Login"
+              onClickHandler={handleLogin}
+            />
           </Box>
         </Paper>
       ) : null}

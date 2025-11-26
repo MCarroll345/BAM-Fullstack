@@ -1,0 +1,36 @@
+.container {
+  flex-grow: 1;
+}
+
+.logoButton {
+  padding: 0;
+  min-width: auto;
+  margin-right: 16px;
+}
+
+.logo {
+  width: 180px;
+  margin-bottom: 0px;
+}
+
+.title {
+  flex-grow: 1;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.loginButton {
+  margin-right: 16px;
+}
+
+.loginButton > div {
+  margin: 0;
+}
+
+.createAccountButton {
+  margin-left: 16px;
+}
+
+.createAccountButton > div {
+  margin: 0;
+}

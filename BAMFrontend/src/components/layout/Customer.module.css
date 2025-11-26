@@ -1,0 +1,23 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 105vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paper {
+  padding: 50px 20px;
+  width: 600px;
+}
+
+.fieldsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Paper, TextField, Button, Typography, Box } from '@mui/material';
+import classes from './Account.module.css';
+import { Container, Paper, TextField, Typography, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import Button from '../generic/Button';
 
 export default function Account() {
   const [customerData, setCustomerData] = useState(null);
@@ -190,11 +192,7 @@ export default function Account() {
     navigate('/login');
   };
 
-  const paperStyle = {
-    padding: '30px',
-    width: 400,
-    margin: '50px auto',
-  };
+
 
   if (!customerData) {
     return (
@@ -208,7 +206,7 @@ export default function Account() {
 
   return (
     <Container>
-      <Paper elevation={3} style={paperStyle}>
+      <Paper elevation={3} className={classes.paper}>
         <Typography variant="h6" gutterBottom>
          <strong> Customer Details</strong>
         </Typography>
@@ -232,28 +230,19 @@ export default function Account() {
         </Typography>
 
         {/* Update Field Buttons */}
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, marginTop: '20px' }}>
+        <Box className={classes.updateButtonsContainer}>
           <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setUpdateField('address')}
-          >
-            Update Address
-          </Button>
+            text1="Update Address"
+            onClickHandler={() => setUpdateField('address')}
+          />
           <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setUpdateField('email')}
-          >
-            Update Email
-          </Button>
-          <Button sx={{ marginBottom: '20px' }}
-            variant="contained"
-            color="primary"
-            onClick={() => setUpdateField('phone')}
-          >
-            Update Phone Number
-          </Button>
+            text1="Update Email"
+            onClickHandler={() => setUpdateField('email')}
+          />
+          <Button
+            text1="Update Phone Number"
+            onClickHandler={() => setUpdateField('phone')}
+          />
         </Box>
 
         {/* Input for Updating Field */}
@@ -267,14 +256,9 @@ export default function Account() {
               margin="normal"
             />
             <Button
-              variant="contained"
-              color="success"
-              onClick={() => handleFieldUpdate(updateField)}
-              fullWidth
-              style={{ marginTop: '10px', marginBottom: '40px' }}
-            >
-              Confirm Update
-            </Button>
+              text1="Confirm Update"
+              onClickHandler={() => handleFieldUpdate(updateField)}
+            />
           </>
         )}
 
@@ -304,61 +288,40 @@ export default function Account() {
           onChange={(e) => setTransferIban(e.target.value)}
           margin="normal"
         />
-        <Box sx={{ display: 'flex', gap: 2, marginTop: '10px' }}>
+        <Box className={classes.transactionButtonsContainer}>
           <Button
-            variant="contained"
-            color="success"
-            onClick={() => handleTransaction('deposit')}
-            fullWidth
-          >
-            Deposit
-          </Button>
+            text1="Deposit"
+            onClickHandler={() => handleTransaction('deposit')}
+          />
           <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => handleTransaction('withdraw')}
-            fullWidth
-          >
-            Withdraw
-          </Button>
+            text1="Withdraw"
+            onClickHandler={() => handleTransaction('withdraw')}
+          />
           <Button
-            variant="contained"
-            color="primary"
-            onClick={handleTransfer}
-            fullWidth
-          >
-            Transfer
-          </Button>
+            text1="Transfer"
+            onClickHandler={handleTransfer}
+          />
         </Box>
 
         {/* Get Receipts Button */}
         <Button
-  variant="contained"
-  onClick={handleGetReceipts}
-  fullWidth
-  style={{ backgroundColor: '#616161', color: 'white', marginTop: '20px' }}
->
-  Get Receipts
-</Button>
+          text1="Get Receipts"
+          onClickHandler={handleGetReceipts}
+        />
       
 
 {/* Display Receipts */}
 {receipts.length > 0 && (
-  <Box style={{ marginTop: '20px' }}>
+  <Box className={classes.receiptsContainer}>
     <Typography variant="h6" gutterBottom>
       Recent Receipts
     </Typography>
     {receipts.map((receipt, index) => (
       <Box 
         key={index} 
-        style={{
-          backgroundColor: '#f9f9f9', 
-          borderRadius: '8px', 
-          padding: '10px', 
-          marginBottom: '10px'
-        }}
+        className={classes.receiptItem}
       >
-        <Typography variant="body1" style={{ fontWeight: 'bold' }}>
+        <Typography variant="body1" className={classes.receiptTitle}>
           Receipt #{index + 1}
         </Typography>
         <Typography variant="body2">
@@ -378,29 +341,19 @@ export default function Account() {
   </Box>
 )}{/* Delete Account Button */}
 <Button
-  variant="contained"
-  color="error"
-  onClick={handleDeleteAccount}
-  fullWidth
-  style={{ marginTop: '20px' }}
->
-  Delete Account
-</Button>
+          text1="Delete Account"
+          onClickHandler={handleDeleteAccount}
+        />
 
         {/* Log Out Button */}
         <Button
-          variant="contained"
-          color="secondary"
-          onClick={handleLogout}
-          fullWidth
-          style={{ marginTop: '20px' }}
-        >
-          Log Out
-        </Button>
+          text1="Log Out"
+          onClickHandler={handleLogout}
+        />
 
         {/* Error Message Display */}
         {errorMessage && (
-          <Typography color="error" variant="body2" style={{ marginTop: '10px' }}>
+          <Typography color="error" variant="body2" className={classes.errorMessage}>
             {errorMessage}
           </Typography>
         )}

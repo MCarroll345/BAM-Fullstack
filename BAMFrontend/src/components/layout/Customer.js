@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import classes from './Customer.module.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Container, Paper, Button } from '@mui/material';
+import { Container, Paper } from '@mui/material';
+import Button from '../generic/Button';
 
 export default function Customer() {
-  const paperStyle = { padding: '50px 20px', width: 600 };
+
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [phonenm, setPhone] = useState('');
@@ -28,26 +30,14 @@ export default function Customer() {
   return (
     <Box
       component="form"
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '105vh',
-        '& > :not(style)': { m: 1, width: '280ch' },
-      }}
+      className={classes.formContainer}
       noValidate
       autoComplete="off"
     >
-      <Container
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Paper elevation={3} style={paperStyle}>
+      <Container className={classes.container}>
+        <Paper elevation={3} className={classes.paper}>
           <h1>Create Account</h1>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box className={classes.fieldsContainer}>
           <TextField
               id="password"
               label="Password"
@@ -107,7 +97,7 @@ export default function Customer() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-<Button variant="contained" onClick={handleClick}>Submit</Button>
+<Button text1="Submit" onClickHandler={handleClick} />
 
           </Box>
           <p>
