@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Account.module.css';
-import { Container, Paper, TextField, Typography, Box } from '@mui/material';
+import { Container, Paper, TextField, Typography, Box, Collapse } from '@mui/material';
+import { ExpandMore, ExpandLess } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import Button from '../generic/Button';
 
@@ -12,6 +13,7 @@ export default function Account() {
   const [updateField, setUpdateField] = useState('');
   const [newFieldValue, setNewFieldValue] = useState('');
   const [receipts, setReceipts] = useState([]); // State for storing receipts
+  const [showReceipts, setShowReceipts] = useState(false); // State for showing/hiding receipts
 
   const navigate = useNavigate();
 
@@ -69,18 +71,23 @@ export default function Account() {
       return;
     }
 
-    try {
-      const response = await fetch(`http://localhost:8082/receipt/getRec/${customerData.iban}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch receipts');
-      }
+    if (receipts.length === 0) {
+      try {
+        const response = await fetch(`http://localhost:8082/receipt/getRec/${customerData.iban}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch receipts');
+        }
 
-      const data = await response.json();
-      setReceipts(data.slice(0, 5)); // Display only the last 5 receipts
-      setErrorMessage('');
-    } catch (error) {
-      setErrorMessage(error.message);
+        const data = await response.json();
+        setReceipts(data.slice(0, 5)); // Display only the last 5 receipts
+        setErrorMessage('');
+      } catch (error) {
+        setErrorMessage(error.message);
+        return;
+      }
     }
+    
+    setShowReceipts(!showReceipts);
   };
 
   const handleTransaction = async (transactionType) => {
@@ -304,42 +311,45 @@ export default function Account() {
         </Box>
 
         {/* Get Receipts Button */}
-        <Button
-          text1="Get Receipts"
-          onClickHandler={handleGetReceipts}
-        />
-      
-
-{/* Display Receipts */}
-{receipts.length > 0 && (
-  <Box className={classes.receiptsContainer}>
-    <Typography variant="h6" gutterBottom>
-      Recent Receipts
-    </Typography>
-    {receipts.map((receipt, index) => (
-      <Box 
-        key={index} 
-        className={classes.receiptItem}
-      >
-        <Typography variant="body1" className={classes.receiptTitle}>
-          Receipt #{index + 1}
-        </Typography>
-        <Typography variant="body2">
-          <strong>Account IBAN 1:</strong> {receipt.accountIBAN1}
-        </Typography>
-        <Typography variant="body2">
-          <strong>Account IBAN 2:</strong> {receipt.accountIBAN2}
-        </Typography>
-        <Typography variant="body2">
-          <strong>Balance Change:</strong> {receipt.balChange > 0 ? `+${receipt.balChange}` : receipt.balChange}
-        </Typography>
-        <Typography variant="body2">
-          <strong>Receipt ID:</strong> {receipt.id}
-        </Typography>
-      </Box>
-    ))}
-  </Box>
-)}{/* Delete Account Button */}
+        <Box className={classes.receiptsSection}>
+          <Button
+            text1={showReceipts ? "Hide Receipts" : "Show Receipts"}
+            onClickHandler={handleGetReceipts}
+            icon={showReceipts ? <ExpandLess /> : <ExpandMore />}
+          />
+          
+          <Collapse in={showReceipts}>
+            {receipts.length > 0 && (
+              <Box className={classes.receiptsContainer}>
+                <Typography variant="h6" gutterBottom className={classes.receiptsTitle}>
+                  Recent Receipts
+                </Typography>
+                {receipts.map((receipt, index) => (
+                  <Box 
+                    key={index} 
+                    className={classes.receiptItem}
+                  >
+                    <Typography variant="body1" className={classes.receiptTitle}>
+                      Receipt #{index + 1}
+                    </Typography>
+                    <Typography variant="body2">
+                      <strong>Account IBAN 1:</strong> {receipt.accountIBAN1}
+                    </Typography>
+                    <Typography variant="body2">
+                      <strong>Account IBAN 2:</strong> {receipt.accountIBAN2}
+                    </Typography>
+                    <Typography variant="body2">
+                      <strong>Balance Change:</strong> {receipt.balChange > 0 ? `+${receipt.balChange}` : receipt.balChange}
+                    </Typography>
+                    <Typography variant="body2">
+                      <strong>Receipt ID:</strong> {receipt.id}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+            )}
+          </Collapse>
+        </Box>{/* Delete Account Button */}
 <Button
           text1="Delete Account"
           onClickHandler={handleDeleteAccount}

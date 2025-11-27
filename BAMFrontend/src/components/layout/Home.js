@@ -1,15 +1,18 @@
 import React from 'react'
 import classes from './Home.module.css'
-import { Container, Box, Typography, Grid, Card, CardContent, Link } from '@mui/material'
+import { Container, Box, Typography, Grid, Card, CardContent } from '@mui/material'
 import { Security, Support, SwapHoriz, TrendingUp, AccountBalance, Shield } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 import Button from '../generic/Button'
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className={classes.pageContainer}>
     <Container maxWidth="lg" className={classes.content}>
       {/* Hero Section */}
-      <Box className={classes.heroSection}>
+      <Box className={classes.welcSection}>
         <Typography variant="h3" gutterBottom>
           Welcome to BAMBanking
         </Typography>
@@ -104,10 +107,10 @@ function Home() {
         </Typography>
         <Grid container justifyContent="center" spacing={3} className={classes.quickLinksGrid}>
           <Grid item>
-            <Button text1="Login to Account" onClickHandler={() => window.location.href = '/login'} />
+            <Button text1="Login to Account" onClickHandler={() => navigate('/login')} />
           </Grid>
           <Grid item>
-            <Button text1="Open New Account" onClickHandler={() => window.location.href = '/newAccount'} />
+            <Button text1="Open New Account" onClickHandler={() => navigate('/newAccount')} />
           </Grid>
         </Grid>
       </Box>

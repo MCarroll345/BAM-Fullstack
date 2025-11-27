@@ -1,36 +1,24 @@
 .container {
   flex-grow: 1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.logoButton {
-  padding: 0;
-  min-width: auto;
-  margin-right: 16px;
-}
 
 .logo {
   width: 180px;
   margin-bottom: 0px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .title {
   flex-grow: 1;
   font-size: 3rem;
   text-align: center;
-}
-
-.loginButton {
-  margin-right: 16px;
-}
-
-.loginButton > div {
-  margin: 0;
-}
-
-.createAccountButton {
-  margin-left: 16px;
-}
-
-.createAccountButton > div {
-  margin: 0;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #ffffff 30%, #f0f8ff 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

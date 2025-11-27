@@ -36,7 +36,7 @@ function Appbar() {
           </Typography>
           
           {/* Login Button */}
-          <div className={classes.loginButton}>
+          <div>
             <Button
               text1="Login"
               onClickHandler={() => navigate('/login')}
@@ -44,7 +44,7 @@ function Appbar() {
           </div>
           
           {/* Create Account Button */}
-          <div className={classes.createAccountButton}>
+          <div>
             <Button
               text1="Create Account"
               onClickHandler={() => navigate('/newAccount')}

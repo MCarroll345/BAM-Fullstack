@@ -17,8 +17,18 @@
   margin-top: 10px;
 }
 
-.receiptsContainer {
+.receiptsSection {
   margin-top: 20px;
+}
+
+.receiptsContainer {
+  margin-top: 16px;
+  padding-top: 16px;
+}
+
+.receiptsTitle {
+  margin-bottom: 16px;
+  color: #333;
 }
 
 .receiptItem {
