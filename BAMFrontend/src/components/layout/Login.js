@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classes from './Login.module.css';
 import { Box, Container, Paper, TextField, Typography } from '@mui/material';
+import { Login as LoginIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import Button from '../generic/Button';
 
@@ -48,40 +49,50 @@ export default function Login() {
 
 
   return (
-    <Container>
-      {!customerData ? (
-        <Paper elevation={3} className={classes.paper}>
-          <Typography variant="h5" component="h2" align="center" gutterBottom>
-            Login
-          </Typography>
-          <Box className={classes.formContainer}>
-            <TextField
-              label="Username"
-              variant="outlined"
-              fullWidth
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <TextField
-              label="Password"
-              variant="outlined"
-              type="password"
-              fullWidth
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {errorMessage && (
-              <Typography color="error" variant="body2">
-                {errorMessage}
+    <div className={classes.pageContainer}>
+      <Container className={classes.container}>
+        {!customerData ? (
+          <Paper elevation={8} className={classes.paper}>
+            <Box className={classes.header}>
+              <LoginIcon className={classes.headerIcon} />
+              <Typography variant="h4" component="h2" className={classes.title}>
+                Welcome Back
               </Typography>
-            )}
-            <Button
-              text1="Login"
-              onClickHandler={handleLogin}
-            />
-          </Box>
-        </Paper>
-      ) : null}
-    </Container>
+              <Typography variant="body1" className={classes.subtitle}>
+                Sign in to your BAM Banking account
+              </Typography>
+            </Box>
+            <Box className={classes.formContainer}>
+              <TextField
+                label="Username"
+                variant="outlined"
+                fullWidth
+                className={classes.textField}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <TextField
+                label="Password"
+                variant="outlined"
+                type="password"
+                fullWidth
+                className={classes.textField}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {errorMessage && (
+                <Typography color="error" variant="body2" className={classes.errorMessage}>
+                  {errorMessage}
+                </Typography>
+              )}
+              <Button
+                text1="Sign In"
+                onClickHandler={handleLogin}
+              />
+            </Box>
+          </Paper>
+        ) : null}
+      </Container>
+    </div>
   );
 }

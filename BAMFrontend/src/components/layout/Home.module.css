@@ -1,15 +1,17 @@
 .heroSection {
   text-align: center;
-  background-color: #1976d2;
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
   color: white;
-  padding: 48px 0;
-  border-radius: 48px;
-  margin-bottom: 32px;
-  margin-top: 10px;
+  padding: 80px 0;
+  border-radius: 24px;
+  margin-bottom: 64px;
+  margin-top: 20px;
+  box-shadow: 0 8px 32px rgba(25, 118, 210, 0.3);
 }
 
 .featuresSection {
-  margin: 32px 0;
+  margin: 64px 0;
+  padding: 40px 0;
 }
 
 .featureCard {
@@ -17,27 +19,102 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cardContent {
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.cardIcon {
+  font-size: 48px;
+  color: #1976d2;
+  margin-bottom: 16px;
+}
+
+.cardTitle {
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.cardDescription {
+  color: #666;
+  line-height: 1.6;
+}
+
+.statsSection {
+  margin: 64px 0;
+  padding: 60px 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 24px;
+}
+
+.statItem {
+  text-align: center;
+  padding: 20px;
+}
+
+.statIcon {
+  font-size: 48px;
+  color: #1976d2;
+  margin-bottom: 16px;
+}
+
+.statNumber {
+  font-weight: 700;
+  color: #1976d2;
+  margin-bottom: 8px;
 }
 
 .quickLinksSection {
-  margin: 32px 0;
+  margin: 64px 0;
+  padding: 60px 0;
   text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 24px;
+}
+
+.quickLinksSubtext {
+  margin-bottom: 32px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.quickLinksGrid {
+  margin-top: 32px;
 }
 
 .pageContainer {
   min-height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .content {
   flex: 1;
+  padding-bottom: 40px;
 }
 
 .footer {
-  padding: 16px 0;
+  padding: 24px 0;
   text-align: center;
-  background-color: #f5f5f5;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
   width: 100%;
   margin-top: auto;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
 }

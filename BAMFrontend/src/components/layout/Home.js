@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './Home.module.css'
 import { Container, Box, Typography, Grid, Card, CardContent, Link } from '@mui/material'
+import { Security, Support, SwapHoriz, TrendingUp, AccountBalance, Shield } from '@mui/icons-material'
 import Button from '../generic/Button'
 
 function Home() {
@@ -29,9 +30,10 @@ function Home() {
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             <Card className={classes.featureCard}>
-              <CardContent>
-                <Typography variant="h6">Secure Banking</Typography>
-                <Typography>
+              <CardContent className={classes.cardContent}>
+                <Security className={classes.cardIcon} />
+                <Typography variant="h6" className={classes.cardTitle}>Secure Banking</Typography>
+                <Typography className={classes.cardDescription}>
                   Advanced encryption to keep your transactions safe.
                 </Typography>
               </CardContent>
@@ -39,9 +41,10 @@ function Home() {
           </Grid>
           <Grid item xs={12} md={4}>
             <Card className={classes.featureCard}>
-              <CardContent>
-                <Typography variant="h6">24/7 Customer Support</Typography>
-                <Typography>
+              <CardContent className={classes.cardContent}>
+                <Support className={classes.cardIcon} />
+                <Typography variant="h6" className={classes.cardTitle}>24/7 Customer Support</Typography>
+                <Typography className={classes.cardDescription}>
                   We are here to assist you anytime, anywhere.
                 </Typography>
               </CardContent>
@@ -49,9 +52,10 @@ function Home() {
           </Grid>
           <Grid item xs={12} md={4}>
             <Card className={classes.featureCard}>
-              <CardContent>
-                <Typography variant="h6">Easy Transfers</Typography>
-                <Typography>
+              <CardContent className={classes.cardContent}>
+                <SwapHoriz className={classes.cardIcon} />
+                <Typography variant="h6" className={classes.cardTitle}>Easy Transfers</Typography>
+                <Typography className={classes.cardDescription}>
                   Instant fund transfers with a single click.
                 </Typography>
               </CardContent>
@@ -60,21 +64,50 @@ function Home() {
         </Grid>
       </Box>
 
+      {/* Statistics Section */}
+      <Box className={classes.statsSection}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Trusted by Thousands
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <Box className={classes.statItem}>
+              <TrendingUp className={classes.statIcon} />
+              <Typography variant="h3" className={classes.statNumber}>50K+</Typography>
+              <Typography variant="body1">Active Customers</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box className={classes.statItem}>
+              <AccountBalance className={classes.statIcon} />
+              <Typography variant="h3" className={classes.statNumber}>$2B+</Typography>
+              <Typography variant="body1">Assets Under Management</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box className={classes.statItem}>
+              <Shield className={classes.statIcon} />
+              <Typography variant="h3" className={classes.statNumber}>99.9%</Typography>
+              <Typography variant="body1">Security Uptime</Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
       {/* Quick Links */}
       <Box className={classes.quickLinksSection}>
-        <Typography variant="h5" gutterBottom>
-          Quick Links
+        <Typography variant="h4" gutterBottom>
+          Get Started Today
         </Typography>
-        <Grid container justifyContent="center" spacing={2}>
+        <Typography variant="body1" className={classes.quickLinksSubtext}>
+          Join thousands of satisfied customers who trust BAM Banking
+        </Typography>
+        <Grid container justifyContent="center" spacing={3} className={classes.quickLinksGrid}>
           <Grid item>
-            <Link href="/login" variant="body1" underline="hover">
-              Login
-            </Link>
+            <Button text1="Login to Account" onClickHandler={() => window.location.href = '/login'} />
           </Grid>
           <Grid item>
-            <Link href="/newAccount" variant="body1" underline="hover">
-              Open Account
-            </Link>
+            <Button text1="Open New Account" onClickHandler={() => window.location.href = '/newAccount'} />
           </Grid>
         </Grid>
       </Box>
